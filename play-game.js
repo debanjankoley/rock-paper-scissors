@@ -3,20 +3,32 @@
 // write a function that plays the game and returns the result
 // write a function that plays the game for 5 rounds, keeps score and return results
 
-let userInput = prompt("Enter rock/paper/scissors");
-let playerSelection = userInput.toUpperCase();
-let computerChoice
+let computerSelection 
+let winnerDeclaration
 
-function computerSelection() {
-
+function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3) + 1;
     if (randomNumber == 1) {
-        computerChoice = "ROCK";
+        computerSelection = "ROCK";
     } else if (randomNumber == 2) {
-        computerChoice = "PAPER";
+        computerSelection = "PAPER";
     } else {
-        computerChoice = "SCISSOR"
+        computerSelection = "SCISSORS"
     }
-    return console.log(computerChoice);
+}
 
+function playRound() {
+    let playerSelection = prompt("Enter rock/paper/scissors").toUpperCase();
+    if (playerSelection == "ROCK" && computerSelection == "SCISSORS") {
+        winnerDeclaration = "You Win! ROCK beats SCISSORS";
+    } else if (playerSelection == "PAPER" && computerSelection == "ROCK") {
+        winnerDeclaration = "You Win! PAPER beats ROCK";
+    } else if (playerSelection == "SCISSORS" && computerSelection == "PAPER") {
+        winnerDeclaration = "You Win! SCISSORS beats PAPER";
+    } else if (playerSelection === computerSelection) {
+        winnerDeclaration = "It is a DRAW. Play Again"
+    } else {
+        winnerDeclaration = "You Lose! " + computerSelection + " beats " + playerSelection;
+    }
+    return console.log(winnerDeclaration);
 }
