@@ -33,7 +33,7 @@ function playRound(e) {
 
     if (winnerDeclaration.charAt(4) === "W") {
         playerScore += 1;
-    } else {
+    } else if (winnerDeclaration.charAt(4) === "L"){
         computerScore += 1;
     };
     
