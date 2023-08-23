@@ -9,26 +9,26 @@ let winnerDeclaration
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3) + 1;
     if (randomNumber == 1) {
-        computerSelection = "ROCK";
+        computerSelection = "rock";
     } else if (randomNumber == 2) {
-        computerSelection = "PAPER";
+        computerSelection = "paper";
     } else {
-        computerSelection = "SCISSORS"
+        computerSelection = "scissors"
     }
 }
 
 function playRound() {
-    let playerSelection = prompt("Enter rock/paper/scissors").toUpperCase();
+    let playerSelection = prompt("Enter rock/paper/scissors").toLowerCase();
 
-    if (playerSelection == "ROCK" && computerSelection == "SCISSORS") {
-        winnerDeclaration = "You Win! ROCK beats SCISSORS";
-    } else if (playerSelection == "PAPER" && computerSelection == "ROCK") {
-        winnerDeclaration = "You Win! PAPER beats ROCK";
-    } else if (playerSelection == "SCISSORS" && computerSelection == "PAPER") {
-        winnerDeclaration = "You Win! SCISSORS beats PAPER";
+    if (playerSelection == "rock" && computerSelection == "scissors") {
+        winnerDeclaration = "You Win! rock beats scissors";
+    } else if (playerSelection == "paper" && computerSelection == "rock") {
+        winnerDeclaration = "You Win! paper beats rock";
+    } else if (playerSelection == "scissors" && computerSelection == "paper") {
+        winnerDeclaration = "You Win! scissors beats paper";
     } else if (playerSelection === computerSelection) {
         winnerDeclaration = "It's Draw";
-    } else if (playerSelection != "ROCK" && playerSelection != "PAPER" && playerSelection != "SCISSORS") {
+    } else if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
         winnerDeclaration = "CHOICE IS INVALID";
     } else {
         winnerDeclaration = "You Lose! " + computerSelection + " beats " + playerSelection;
