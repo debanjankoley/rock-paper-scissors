@@ -17,8 +17,8 @@ function getComputerChoice() {
     }
 }
 
-function playRound() {
-    let playerSelection = prompt("Enter rock/paper/scissors").toLowerCase();
+function playRound(e) {
+    let playerSelection = e.target.classList[0];
 
     if (playerSelection == "rock" && computerSelection == "scissors") {
         winnerDeclaration = "You Win! rock beats scissors";
@@ -28,8 +28,6 @@ function playRound() {
         winnerDeclaration = "You Win! scissors beats paper";
     } else if (playerSelection === computerSelection) {
         winnerDeclaration = "It's Draw";
-    } else if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
-        winnerDeclaration = "CHOICE IS INVALID";
     } else {
         winnerDeclaration = "You Lose! " + computerSelection + " beats " + playerSelection;
     }
@@ -37,6 +35,15 @@ function playRound() {
     console.log(winnerDeclaration);
 }
 
+const button = document.querySelectorAll("button");
+button.forEach(choice => choice.addEventListener("click", getComputerChoice));
+button.forEach(choice => choice.addEventListener("click", playRound));
+
+
+
+
+
+/* 
 function game() {
     let playerScore = 0;
     let computerScore = 0;
@@ -56,4 +63,4 @@ function game() {
     } else {
         console.log("DRAW. SCORE > " + playerScore.toString() + " : " + computerScore.toString())
     }
-}
+} */
