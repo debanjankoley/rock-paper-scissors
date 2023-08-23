@@ -1,12 +1,9 @@
-// get user input and store it
-// write a function that randomly returns rock, paper or scissors
-// write a function that plays the game and returns the result
-// write a function that plays the game for 5 rounds, keeps score and return results
-
 let computerSelection 
 let winnerDeclaration
+let playerScore = 0
+let computerScore = 0
 
-function getComputerChoice() {
+function getComputerChoice(e) {
     let randomNumber = Math.floor(Math.random() * 3) + 1;
     if (randomNumber == 1) {
         computerSelection = "rock";
@@ -33,34 +30,36 @@ function playRound(e) {
     }
     
     text.textContent = winnerDeclaration;
+
+    if (winnerDeclaration.charAt(4) === "W") {
+        playerScore += 1;
+    } else {
+        computerScore += 1;
+    };
+    
+    scoreForPlayer.textContent  = "Player Score : " + playerScore;
+    scoreForComputer.textContent = "Computer Score : " + computerScore;
+    
+    if (playerScore === 5) {
+        console.log(this)
+        finalResult.textContent = "Game Over! You Win";
+        controller.abort()
+    } else if (computerScore === 5 ) {
+        finalResult.textContent = "Game Over! Computer Wins";
+        controller.abort()
+    };
+
 }
 
 const button = document.querySelectorAll("button");
-button.forEach(choice => choice.addEventListener("click", getComputerChoice));
-button.forEach(choice => choice.addEventListener("click", playRound));
-
 const text = document.querySelector(".text");
+const scoreForPlayer = document.querySelector(".player-score");
+const scoreForComputer = document.querySelector(".computer-score");
+const finalResult = document.querySelector(".final-result");
 
+const controller = new AbortController()
 
-
-/* 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        getComputerChoice();
-        playRound();
-        if (winnerDeclaration.charAt(4) === "W") {
-            playerScore += 1;
-        } else if (winnerDeclaration.charAt(4) === "L") {
-            computerScore += 1;
-        }
-    }
-    if (playerScore < computerScore) {
-        console.log("YOU LOSE. SCORE > " + playerScore.toString() + " : " + computerScore.toString())
-    } else if (playerScore > computerScore) {
-        console.log("YOU WIN. SCORE > " + playerScore.toString() + " : " + computerScore.toString())
-    } else {
-        console.log("DRAW. SCORE > " + playerScore.toString() + " : " + computerScore.toString())
-    }
-} */
+button.forEach(button => button.addEventListener("click", (e)=> {
+    getComputerChoice(e);
+    playRound(e);
+}, { signal: controller.signal }))
