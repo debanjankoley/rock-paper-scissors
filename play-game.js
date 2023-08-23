@@ -32,14 +32,14 @@ function playRound(e) {
         winnerDeclaration = "You Lose! " + computerSelection + " beats " + playerSelection;
     }
     
-    console.log(winnerDeclaration);
+    text.textContent = winnerDeclaration;
 }
 
 const button = document.querySelectorAll("button");
 button.forEach(choice => choice.addEventListener("click", getComputerChoice));
 button.forEach(choice => choice.addEventListener("click", playRound));
 
-
+const text = document.querySelector(".text");
 
 
 
